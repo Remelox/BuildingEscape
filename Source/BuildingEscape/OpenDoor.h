@@ -8,8 +8,6 @@
 #include "Math/BigInt.h"
 #include "OpenDoor.generated.h"
 
-//TBigInt<2048> int2048;
-
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) ) 
 class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
 {

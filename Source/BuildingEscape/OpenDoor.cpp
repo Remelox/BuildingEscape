@@ -32,29 +32,10 @@ void UOpenDoor::OpenDoor()
 
 	Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f), ETeleportType::None);
 
-	//BigCounter = 10;
-	//BigCounter.ShiftLeft(1002);
-
 	FString ObjectRotationString = GetOwner()->GetActorRotation().ToString();
-	//FString BigNumber = BigCounter.ToString();
-	
-	//BigCounterTens = BigCounter;
-	//int32 Places = 0;
-	
-	//do {
-	//	BigCounterTens /= 10;
-	//	Places++;
-	//} while (BigCounterTens >= 1000);
-
-	//int32 Tens = BigCounterTens.ToInt();
-
-	//FString BigNumberTensString = FString::FromInt(Tens);
-	//FString PlacesString = FString::FromInt(Places);
-	
 
 	UE_LOG(LogTemp, Warning, TEXT("%s is at %s."), *ObjectName, *ObjectRotationString);
-	//UE_LOG(LogTemp, Warning, TEXT("%s."), *BigNumber);
-	//UE_LOG(LogTemp, Warning, TEXT("%s x 10^%s."), *BigNumberTensString, *PlacesString);
+
 }
 
 void UOpenDoor::CloseDoor()
