@@ -20,22 +20,48 @@ UOpenDoor::UOpenDoor()
 void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
+
+	Owner = GetOwner();
 	
 	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
 }
 
 void UOpenDoor::OpenDoor()
 {
-	AActor *Owner = GetOwner();
 	FString ObjectName = GetOwner()->GetName();
 
-	FRotator ObjectRotation = FRotator(0.0f, 90.0f, 0.0f);
+	Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f), ETeleportType::None);
 
-	Owner->SetActorRotation(ObjectRotation, ETeleportType::None);
+	//BigCounter = 10;
+	//BigCounter.ShiftLeft(1002);
 
 	FString ObjectRotationString = GetOwner()->GetActorRotation().ToString();
+	//FString BigNumber = BigCounter.ToString();
+	
+	//BigCounterTens = BigCounter;
+	//int32 Places = 0;
+	
+	//do {
+	//	BigCounterTens /= 10;
+	//	Places++;
+	//} while (BigCounterTens >= 1000);
+
+	//int32 Tens = BigCounterTens.ToInt();
+
+	//FString BigNumberTensString = FString::FromInt(Tens);
+	//FString PlacesString = FString::FromInt(Places);
+	
 
 	UE_LOG(LogTemp, Warning, TEXT("%s is at %s."), *ObjectName, *ObjectRotationString);
+	//UE_LOG(LogTemp, Warning, TEXT("%s."), *BigNumber);
+	//UE_LOG(LogTemp, Warning, TEXT("%s x 10^%s."), *BigNumberTensString, *PlacesString);
+}
+
+void UOpenDoor::CloseDoor()
+{
+	FString ObjectName = GetOwner()->GetName();
+
+	Owner->SetActorRotation(FRotator(0.0f, 0.0f, 0.0f), ETeleportType::None);
 }
 
 
@@ -49,6 +75,13 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	if (PressurePlate->IsOverlappingActor(ActorThatOpens))
 	{
 		OpenDoor();
+		LastDoorOpenTime = GetWorld()->GetTimeSeconds();
+	}
+	
+
+	if (GetWorld()->GetTimeSeconds() - LastDoorOpenTime > DoorCloseDelay)
+	{
+		CloseDoor();
 	}
 }
 

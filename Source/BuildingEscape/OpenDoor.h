@@ -5,9 +5,10 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "Engine/TriggerVolume.h"
+#include "Math/BigInt.h"
 #include "OpenDoor.generated.h"
 
-
+//TBigInt<2048> int2048;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) ) 
 class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
@@ -22,17 +23,28 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-	void OpenDoor();
+	void OpenDoor(); 
+	void CloseDoor();
 
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	TBigInt<2048> BigCounter;
+	TBigInt<2048> BigCounterTens;
+	
 private:
 	UPROPERTY(VisibleAnywhere)
-	float OpenAngle = 90.f;
+	float OpenAngle = -70.f;
 
 	UPROPERTY(EditAnywhere)
 	ATriggerVolume *PressurePlate;
+
+	UPROPERTY(EditAnywhere)
+	float DoorCloseDelay = 0.7f;
+
+	float LastDoorOpenTime;
+	
+	AActor *Owner;
 
 	//UPROPERTY(EditAnywhere)
 	AActor *ActorThatOpens;
