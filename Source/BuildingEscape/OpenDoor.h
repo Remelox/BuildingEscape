@@ -44,8 +44,10 @@ private:
 	
 	AActor *Owner;
 
+	float GetTotalMassOfActorsOnPlate();
+
 	//UPROPERTY(EditAnywhere)
-	AActor *ActorThatOpens;
+
 
 
 		
