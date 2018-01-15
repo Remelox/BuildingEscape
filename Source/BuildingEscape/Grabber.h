@@ -44,6 +44,12 @@ private:
 	//Release what was grabbed.
 	void Release();
 
+	//Get start of reach line.
+	FVector GetReachLineStart();
+	
+	//Get end of reach line.
+	FVector GetReachLineEnd();
+	
 	//Find attached physics handle
 	void FindPhysicsHandleComponent();
 };
