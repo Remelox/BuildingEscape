@@ -27,22 +27,20 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-	TBigInt<2048> BigCounter;
-	TBigInt<2048> BigCounterTens;
 	
 private:
 	UPROPERTY(VisibleAnywhere)
 	float OpenAngle = -70.f;
 
 	UPROPERTY(EditAnywhere)
-	ATriggerVolume *PressurePlate;
+	ATriggerVolume *PressurePlate = nullptr;
 
 	UPROPERTY(EditAnywhere)
 	float DoorCloseDelay = 0.7f;
 
 	float LastDoorOpenTime;
 	
-	AActor *Owner;
+	AActor *Owner = nullptr;
 
 	float GetTotalMassOfActorsOnPlate();
 
