@@ -27,20 +27,12 @@ void UOpenDoor::BeginPlay()
 
 void UOpenDoor::OpenDoor()
 {
-	FString ObjectName = GetOwner()->GetName();
-
-	Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f), ETeleportType::None);
-
-	FString ObjectRotationString = GetOwner()->GetActorRotation().ToString();
-
-	//UE_LOG(LogTemp, Warning, TEXT("%s is at %s."), *ObjectName, *ObjectRotationString);
-
+	//Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f), ETeleportType::None);
+	OnOpenRequest.Broadcast();
 }
 
 void UOpenDoor::CloseDoor()
 {
-	FString ObjectName = GetOwner()->GetName();
-
 	Owner->SetActorRotation(FRotator(0.0f, 0.0f, 0.0f), ETeleportType::None);
 }
 
